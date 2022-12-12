@@ -38,7 +38,3 @@ message RecordRequest {
 message RecordReply {
   repeated ChargeRecord sales = 1;
 }
-
-message Error {
-  string error = 1;
-}
