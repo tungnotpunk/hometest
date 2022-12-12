@@ -6,12 +6,12 @@ import io.grpc.stub.StreamObserver;
 import java.io.IOException;
 import java.util.logging.Logger;
 import com.anymind.hometest.payment.pointsystem.grpc.*;
+import com.anymind.hometest.payment.pointsystem.handler.*;
 
 
 public class HometestServer {
 
   private static final Logger logger = Logger.getLogger(HometestServer.class.getName());
-
   private Server server;
 
   private void start() throws IOException {
@@ -53,16 +53,12 @@ public class HometestServer {
 
     @Override
     public void charge(ChargeRequest req, StreamObserver<ChargeReply> responseObserver) {
-      ChargeReply reply = ChargeReply.newBuilder().build();
-      responseObserver.onNext(reply);
-      responseObserver.onCompleted();
+      ChargeHandler.handle(req, responseObserver);
     }
 
     @Override
     public void record(RecordRequest req, StreamObserver<RecordReply> responseObserver) {
-      RecordReply reply = RecordReply.newBuilder().build();
-      responseObserver.onNext(reply);
-      responseObserver.onCompleted();
+      RecordHandler.handle(req, responseObserver);
     }
   }
 }
