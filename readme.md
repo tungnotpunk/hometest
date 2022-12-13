@@ -68,8 +68,8 @@ Just control the output server port and db config.
 
 ### Feedback
 
- - The format at the Report Api seems has syntax problem `"sales" "2000.00",`
- - Payment Api request is `"MASTERCARD"`, but response points is `5`, if followed the rules, that should be `price * 0.03` = 3 
+ - At the requirement, the format from the Report Api seems has syntax problem `"sales" "2000.00",`
+ - Payment Api's request is `"MASTERCARD"`, but response points is `5`, if follow the rules, that should be `price * 0.03` = 3 
  - The Report Api didnt descript about sales, so didn't sure it requires price or the final price
 
 License
