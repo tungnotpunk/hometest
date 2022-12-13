@@ -1,6 +1,5 @@
 package com.anymind.hometest.payment.pointsystem.repo;
 
-
 import java.util.List;
 import java.util.Date;
 import org.springframework.data.jpa.repository.JpaRepository;
