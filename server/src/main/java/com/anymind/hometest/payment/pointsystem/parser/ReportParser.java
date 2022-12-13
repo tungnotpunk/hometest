@@ -8,10 +8,10 @@ import com.anymind.hometest.payment.pointsystem.grpc.*;
 import com.anymind.hometest.payment.pointsystem.util.*;
 import com.anymind.hometest.payment.pointsystem.model.input.*;
 
-public class RecordParser {
+public class ReportParser {
 
-  public static Record parse(RecordRequest req) {
-    Record input = new Record();
+  public static Report parse(ReportRequest req) {
+    Report input = new Report();
     try {
       input.setStartDateTime(DateUtil.datetimeToDate(req.getStartDateTime()));
     } catch (ParseException e) {

@@ -9,7 +9,7 @@ package payment;
 
 service PointSystem {
   rpc charge (ChargeRequest) returns (ChargeReply) {}
-  rpc record (RecordRequest) returns (RecordReply) {}
+  rpc report (ReportRequest) returns (ReportReply) {}
 }
 
 message ChargeRequest {
@@ -30,11 +30,11 @@ message ChargeHourRecord {
   double points = 3;
 }
 
-message RecordRequest {
+message ReportRequest {
   string startDateTime = 1;
   string endDateTime = 2;
 }
 
-message RecordReply {
+message ReportReply {
   repeated ChargeHourRecord sales = 1;
 }

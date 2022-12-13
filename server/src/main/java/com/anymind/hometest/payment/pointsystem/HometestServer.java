@@ -15,9 +15,9 @@ public class HometestServer {
 
   private void start(int port) throws IOException {
     server = ServerBuilder.forPort(port)
-        .addService(new PointSystemImpl())
-        .build()
-        .start();
+      .addService(new PointSystemImpl())
+      .build()
+      .start();
     logger.info("Server started, listening on " + port);
     Runtime.getRuntime().addShutdownHook(new Thread() {
       @Override
@@ -55,8 +55,8 @@ public class HometestServer {
     }
 
     @Override
-    public void record(RecordRequest req, StreamObserver<RecordReply> responseObserver) {
-      RecordHandler.handle(req, responseObserver);
+    public void report(ReportRequest req, StreamObserver<ReportReply> responseObserver) {
+      ReportHandler.handle(req, responseObserver);
     }
   }
 }

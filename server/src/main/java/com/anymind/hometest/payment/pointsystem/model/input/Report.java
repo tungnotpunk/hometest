@@ -8,7 +8,7 @@ import java.util.Date;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class Record extends BaseInput {
+public class Report extends BaseInput {
   private Date startDateTime;
   private Date endDateTime;
 }

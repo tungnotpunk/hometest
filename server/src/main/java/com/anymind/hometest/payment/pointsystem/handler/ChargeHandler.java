@@ -8,7 +8,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.beans.factory.annotation.Autowired;
 import com.anymind.hometest.payment.pointsystem.parser.*;
 import com.anymind.hometest.payment.pointsystem.grpc.*;
-import com.anymind.hometest.payment.pointsystem.repo.*;
+import com.anymind.hometest.payment.pointsystem.service.*;
 import com.anymind.hometest.payment.pointsystem.model.input.*;
 import com.anymind.hometest.payment.pointsystem.model.output.*;
 import com.anymind.hometest.payment.pointsystem.model.db.*;
@@ -17,11 +17,11 @@ import com.anymind.hometest.payment.pointsystem.model.db.*;
 public class ChargeHandler {
 
   private static final Logger logger = Logger.getLogger(ChargeHandler.class.getName());
-  private static ChargeRecordRepository chargeRecordRepository;
+  private static ChargeRecordService chargeRecordService;
 
   @Autowired
-  public void setChargeRecordRepository(ChargeRecordRepository chargeRecordRepository){
-      ChargeHandler.chargeRecordRepository = chargeRecordRepository;
+  public void setChargeRecordService(ChargeRecordService chargeRecordService){
+    ChargeHandler.chargeRecordService = chargeRecordService;
   }
 
   public static void handle(ChargeRequest req, StreamObserver<ChargeReply> responseObserver) {
@@ -31,8 +31,7 @@ public class ChargeHandler {
         throw input.getError();
       }
       Charged output = new Charged(input.getPrice(), input.getPriceModifier(), input.getPaymentMethod().getPointRate());
-      ChargeRecord chargeRecord = new ChargeRecord(input, output);
-      chargeRecordRepository.save(chargeRecord);
+      chargeRecordService.charge(input, output);
       ChargeReply reply = ChargeReply.newBuilder()
         .setFinalPrice(output.getFinalPriceInString())
         .setPoints(output.getPoints())
@@ -41,6 +40,8 @@ public class ChargeHandler {
       responseObserver.onCompleted();
     } catch (StatusRuntimeException e) {
       responseObserver.onError(e);
+    } catch (Exception e) {
+      responseObserver.onError(Status.UNKNOWN.withDescription("Server Error - " + e.getMessage()).asRuntimeException());
     }
   }
 }
