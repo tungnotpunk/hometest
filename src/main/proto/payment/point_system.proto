@@ -14,20 +14,20 @@ service PointSystem {
 
 message ChargeRequest {
   string price = 1;
-  fixed32 price_modifier = 2;
+  double price_modifier = 2;
   string payment_method = 3;
   string datetime = 4;
 }
 
 message ChargeReply {
   string final_price = 1;
-  int64 points = 2;
+  double points = 2;
 }
 
 message ChargeRecord {
   string datetime = 1;
   string sales = 2;
-  int64 points = 3;
+  double points = 3;
 }
 
 message RecordRequest {
