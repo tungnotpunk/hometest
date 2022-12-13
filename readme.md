@@ -10,8 +10,6 @@ A gRPC server by java, a home test for AnyMind, designed two apis for a POS inte
 
 ### Tech
 
-Dillinger uses a number of open source projects to work properly:
-
 * [Grpc](https://grpc.io/) - Api Server base tech!
 * [Protobuf](https://developers.google.com/protocol-buffers) - Google's data interchange format
 * [markdown-it](https://github.com/markdown-it/markdown-it) - Markdown parser done right. Fast and easy to extend.
@@ -64,7 +62,7 @@ The server config file is at
 ```sh
 server\src\main\resources\application.properties
 ```
-Just control the output server port and db config.
+Just control the server port and db config.
 
 ### Feedback
 
