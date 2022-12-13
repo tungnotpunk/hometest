@@ -28,7 +28,7 @@ public class ChargeParser {
       return input;
     }
     try {
-      input.setDatetime(DateUtil.datetimeWithTimezone(req.getDatetime()));
+      input.setDatetime(DateUtil.datetimeToDate(req.getDatetime()));
     } catch (ParseException e) {
       input.setError(Status.FAILED_PRECONDITION.withDescription("Datetime is incorrect").asRuntimeException());
       return input;
