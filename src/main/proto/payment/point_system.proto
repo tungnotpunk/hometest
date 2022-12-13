@@ -24,7 +24,7 @@ message ChargeReply {
   double points = 2;
 }
 
-message ChargeRecord {
+message ChargeHourRecord {
   string datetime = 1;
   string sales = 2;
   double points = 3;
@@ -36,5 +36,5 @@ message RecordRequest {
 }
 
 message RecordReply {
-  repeated ChargeRecord sales = 1;
+  repeated ChargeHourRecord sales = 1;
 }

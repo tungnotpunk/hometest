@@ -11,7 +11,7 @@ import com.anymind.hometest.payment.pointsystem.grpc.*;
 import com.anymind.hometest.payment.pointsystem.repo.*;
 import com.anymind.hometest.payment.pointsystem.model.input.*;
 import com.anymind.hometest.payment.pointsystem.model.output.*;
-import com.anymind.hometest.payment.pointsystem.model.db.ChargeRecord;
+import com.anymind.hometest.payment.pointsystem.model.db.*;
 
 @Component
 public class ChargeHandler {
@@ -34,9 +34,9 @@ public class ChargeHandler {
       ChargeRecord chargeRecord = new ChargeRecord(input, output);
       chargeRecordRepository.save(chargeRecord);
       ChargeReply reply = ChargeReply.newBuilder()
-      .setFinalPrice(output.getFinalPriceInString())
-      .setPoints(output.getPoints())
-      .build();
+        .setFinalPrice(output.getFinalPriceInString())
+        .setPoints(output.getPoints())
+        .build();
       responseObserver.onNext(reply);
       responseObserver.onCompleted();
     } catch (StatusRuntimeException e) {
