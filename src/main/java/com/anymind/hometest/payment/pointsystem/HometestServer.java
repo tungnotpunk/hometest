@@ -8,14 +8,12 @@ import java.util.logging.Logger;
 import com.anymind.hometest.payment.pointsystem.grpc.*;
 import com.anymind.hometest.payment.pointsystem.handler.*;
 
-
 public class HometestServer {
 
   private static final Logger logger = Logger.getLogger(HometestServer.class.getName());
   private Server server;
 
-  private void start() throws IOException {
-    int port = 50051;
+  private void start(int port) throws IOException {
     server = ServerBuilder.forPort(port)
         .addService(new PointSystemImpl())
         .build()
@@ -43,12 +41,12 @@ public class HometestServer {
     }
   }
 
-  public static void run() throws IOException, InterruptedException {
+  public static void run(int port) throws IOException, InterruptedException {
     final HometestServer server = new HometestServer();
-    server.start();
+    server.start(port);
     server.blockUntilShutdown();
   }
-
+  
   static class PointSystemImpl extends PointSystemGrpc.PointSystemImplBase {
 
     @Override
