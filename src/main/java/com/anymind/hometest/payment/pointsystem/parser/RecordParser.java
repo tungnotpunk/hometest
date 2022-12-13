@@ -15,13 +15,13 @@ public class RecordParser {
     try {
       input.setStartDateTime(DateUtil.datetimeWithTimezone(req.getStartDateTime()));
     } catch (ParseException e) {
-      input.setError(Status.FAILED_PRECONDITION.withDescription("StartDateTime is not incorrect").asRuntimeException());
+      input.setError(Status.FAILED_PRECONDITION.withDescription("StartDateTime is incorrect").asRuntimeException());
       return input;
     }
     try {
       input.setEndDateTime(DateUtil.datetimeWithTimezone(req.getEndDateTime()));
     } catch (ParseException e) {
-      input.setError(Status.FAILED_PRECONDITION.withDescription("EndDateTime is not incorrect").asRuntimeException());
+      input.setError(Status.FAILED_PRECONDITION.withDescription("EndDateTime is incorrect").asRuntimeException());
     }
     return input;
   }
